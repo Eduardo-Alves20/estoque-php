@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     nodejs \
     npm \
-    && docker-php-ext-install mbstring zip gd
+    && docker-php-ext-install mbstring zip gd pdo_mysql mysqli
 
 # Ativa mod_rewrite do Apache
 RUN a2enmod rewrite

@@ -1,3 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$usuarioNome = $_SESSION['usuario_nome'] ?? 'Usuário';
+$homeUrl = $_SESSION['homeUrl'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -106,11 +114,11 @@
                             </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $_SESSION['usuario_nome']; ?>
+                            <?php echo htmlspecialchars($usuarioNome, ENT_QUOTES, 'UTF-8'); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="usuarioDropdown">
                             <li class="dropdown-item-text">
-                                <a href="painel-adm.php"><?php echo $_SESSION['usuario_nome']; ?></a>
+                                <a href="painel-adm.php"><?php echo htmlspecialchars($usuarioNome, ENT_QUOTES, 'UTF-8'); ?></a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -128,7 +136,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        let homeUrl = '<?php echo $_SESSION['homeUrl'] ?? ""; ?>';
+        let homeUrl = '<?php echo htmlspecialchars($homeUrl, ENT_QUOTES, 'UTF-8'); ?>';
     </script>
     <script src="../assets/js/voltar_home.js"></script>
 </body>
